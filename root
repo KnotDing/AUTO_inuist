@@ -1,0 +1,2 @@
+*/1 * * * * sh /etc/Net_test.sh
+00 */1 * * * /sbin/reboot
