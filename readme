@@ -1,5 +1,5 @@
 Auto_inuist.py is a python3 script for students of NUIST who use i-nuist.
-You can use it on you linux, openwrt or other unix.
+You can use it on you linux, windows, openwrt or other unix.
 Net_test is a sh script which is used for testing network.If there are not a available connection, it will run auto_inuist.py.
 Root is a file for crontab. It is just a example.You should use "crontab -e" to creat a task to run net_test.
 Have fun!
