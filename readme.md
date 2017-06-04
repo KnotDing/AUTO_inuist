@@ -52,6 +52,6 @@ Net_test.sh is a sh script which is used for testing network.If there are not a 
 **root**
 >*/1 * * * * sh /etc/net_test.sh
 
-Root is a file for crontab. It is just a example.You should use "crontab -e" to creat a task to run net_test.
+Root is a file for crontab. It is just a example.You should use 'crontab -e' to creat a task to run net_test.
 
 ##Have fun!
