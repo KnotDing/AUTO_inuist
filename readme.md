@@ -33,7 +33,7 @@ req.add_header('Referer', referer)
 with request.urlopen(req, data=login_data.encode('utf-8')) as f:
     print('Status:', f.status, f.reason)
 ```
-Auto_inuist.py is a python3 script which is under the disguise of Browser for authentication.
+Auto_inuist.py is a python3 script which is under the disguise of browser for authentication.
 
 ----------
 **net_test.sh**
