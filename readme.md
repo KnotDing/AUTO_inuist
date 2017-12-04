@@ -3,7 +3,9 @@ You can use it on your linux, windows, openwrt or other unix.
 
 
 ----------
+
 **auto_inuist.py**
+
 ```python
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
@@ -33,10 +35,13 @@ req.add_header('Referer', referer)
 with request.urlopen(req, data=login_data.encode('utf-8')) as f:
     print('Status:', f.status, f.reason)
 ```
+
 Auto_inuist.py is a python3 script which is under the disguise of browser for authentication.
 
 ----------
+
 **net_test.sh**
+
 ```sh
 PING=`ping -c 3 114.114.114.114 | grep '64 bytes' | wc -l`
 NOT_PING="0"
@@ -45,10 +50,12 @@ then
   python3 /etc/auto_inuist.py    #python脚本目录
 fi
 ```
+
 Net_test.sh is a sh script which is used for testing network.If there are not a available connection, it will run auto_inuist.py.
 
 
 ----------
+
 **root**
 
     */1 * * * * sh /etc/net_test.sh
