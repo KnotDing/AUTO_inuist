@@ -18,7 +18,7 @@ user_agent = 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, li
 referer = 'http://10.255.255.13'
 origin = 'http://10.255.255.13'
 
-username = '账号' #手机号或学号
+~~username = '账号' #手机号或学号~~
 domain = '运营商' #选填ChinaNet\Unicom\CMCC\NUIST
 password = base64.b64encode('密码') #密码
 enablemacauth = '0'
@@ -63,3 +63,4 @@ Net_test.sh is a sh script which is used for testing network.If there are not a 
 Root is a file for crontab. It is just a example.You should use `crontab -e` to creat a task to run net_test.
 
 ## Have fun!
+
