@@ -53,7 +53,7 @@ if net.read()== '0\n':
             crontab = os.getcwd()+'/crontab'
             if not os.path.exists(crontab):
                 f = open(crontab,'w')
-                f.write('7-23/10 * * * * sh '+os.getcwd()+'/net_test.sh\n')
+                f.write('7-23/10 * * * * python3 '+old+'\n')
                 f.close()
                 os.system('crontab ./crontab')
                 os.system('service cron restart')
