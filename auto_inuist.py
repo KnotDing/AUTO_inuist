@@ -36,18 +36,18 @@ if first_use:
     o = open(old, mode='r')
     n = open(new, mode='w')
     for line in o:
-        n.write(line.replace('username = input("Enter your username: 学号或手机号\\n")', 'username = \''+username+'\''), \
-        line.replace('domain = input("Enter your domain: 选填ChinaNet\\\\Unicom\\\\CMCC\\\\NUIST\\n")', 'domain = \''+domain+'\''), \
-        line.replace('password = base64.b64encode(str.encode(input("Enter your password: \\n")))', 'password = \''+password.decode()+'\''), \
-        line.replace('first_use = 1', 'first_use = 0'))
+        n.write(line.replace('username = input("Enter your username: 学号或手机号\\n")', 'username = \''+username+'\'')\
+        .replace('domain = input("Enter your domain: 选填ChinaNet\\\\Unicom\\\\CMCC\\\\NUIST\\n")', 'domain = \''+domain+'\'')\
+        .replace('password = base64.b64encode(str.encode(input("Enter your password: \\n")))', 'password = \''+password.decode()+'\'')\
+        .replace('first_use = 1', 'first_use = 0'))
     o.close()
     n.close()
     os.remove(old)
     os.rename(new, old)
-    contab = os.getcwd()+'/contab'
-    if not os.path.exists(contab):
-        f = open(contab,'w')
-        f.write('7-23//10 * * * * sh //etc//net_test.sh')
+    crontab = os.getcwd()+'/contab'
+    if not os.path.exists(crontab):
+        f = open(crontab,'w')
+        f.write('7-23//10 * * * * sh '+os.getcwd()+'//net_test.sh')
         f.close()
-        os.system("contab .//contab")
+        os.system("crontab .//crontab")
         os.system("service crond restart")
