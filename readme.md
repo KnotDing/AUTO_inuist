@@ -1,4 +1,4 @@
-﻿This is a python3 project for students of NUIST who use i-nuist.
+This is a python3 project for students of NUIST who use i-nuist.
 You can use it on your linux, windows, openwrt or other unix.
 
 
@@ -20,7 +20,7 @@ origin = 'http://10.255.255.13'
 
 username = '账号' #手机号或学号
 domain = '运营商' #选填ChinaNet\Unicom\CMCC\NUIST
-password = '密码' #加密后的密码，非明文密码，可用chrome抓包
+password = base64.b64encode('密码') #密码
 enablemacauth = '0'
 login_data = parse.urlencode([
     ('username', username),
