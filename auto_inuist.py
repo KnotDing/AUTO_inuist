@@ -7,15 +7,16 @@ import base64
 import re
 import os
 import shutil
+import platform
 
 url = 'http://10.255.255.13/index.php/index/login'
 user_agent = 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36'
 referer = 'http://10.255.255.13'
 origin = 'http://10.255.255.13'
 first_use = 1
-username = input("Enter your username: 学号或手机号\n")
-domain = input("Enter your domain: 选填ChinaNet\\Unicom\\CMCC\\NUIST\n")
-password = base64.b64encode(str.encode(input("Enter your password: \n")))
+username = input("Enter your username(Student number or mobile number):\n")
+domain = input("Enter your domain(ChinaNet\\Unicom\\CMCC\\NUIST):\n")
+password = base64.b64encode(str.encode(input("Enter your password:\n")))
 enablemacauth = '0'
 login_data = parse.urlencode([
     ('username', username),
@@ -36,18 +37,21 @@ if first_use:
     o = open(old, mode='r')
     n = open(new, mode='w')
     for line in o:
-        n.write(line.replace('username = input("Enter your username: 学号或手机号\\n")', 'username = \''+username+'\'')\
-        .replace('domain = input("Enter your domain: 选填ChinaNet\\\\Unicom\\\\CMCC\\\\NUIST\\n")', 'domain = \''+domain+'\'')\
-        .replace('password = base64.b64encode(str.encode(input("Enter your password: \\n")))', 'password = \''+password.decode()+'\'')\
+        n.write(line.replace('username = input("Enter your username(Student number or mobile number):\\n")', 'username = \''+username+'\'')\
+        .replace('domain = input("Enter your domain(ChinaNet\\\\Unicom\\\\CMCC\\\\NUIST):\\n")', 'domain = \''+domain+'\'')\
+        .replace('password = base64.b64encode(str.encode(input("Enter your password:\\n")))', 'password = \''+password.decode()+'\'')\
         .replace('first_use = 1', 'first_use = 0'))
     o.close()
     n.close()
     os.remove(old)
     os.rename(new, old)
-    crontab = os.getcwd()+'/crontab'
-    if not os.path.exists(crontab):
-        f = open(crontab,'w')
-        f.write('7-23/10 * * * * sh '+os.getcwd()+'/net_test.sh\n')
-        f.close()
-        os.system("crontab ./crontab")
-        os.system("service cron restart")
+    if platform.system() == 'Windows':
+        print('Please use the scheduled task to set up automatic login. You need to add net_test.sh to the scheduled task.')
+    else:
+        crontab = os.getcwd()+'/crontab'
+        if not os.path.exists(crontab):
+            f = open(crontab,'w')
+            f.write('7-23/10 * * * * sh '+os.getcwd()+'/net_test.sh\n')
+            f.close()
+            os.system("crontab ./crontab")
+            os.system("service cron restart")
