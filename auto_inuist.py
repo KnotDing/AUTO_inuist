@@ -9,7 +9,8 @@ import os
 import shutil
 import platform
 
-if os.popen('ping -c 3 114.114.114.114 | grep \'64 bytes\' | wc -l') == '0':
+net = os.popen('ping -c 3 114.114.114.114 | grep \'64 bytes\' | wc -l') 
+if net.read()== '0':
     url = 'http://10.255.255.13/index.php/index/login'
     user_agent = 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36'
     referer = 'http://10.255.255.13'
