@@ -28,8 +28,6 @@ If you use it on Windows, you may need to use `python /etc/auto_inuist.py` inste
 
 ----------
 
-**root**
-
     */1 * * * * sh /etc/net_test.sh
 
 Root is a file for crontab (It only works under Linux.If you use Windows, you may need to use scheduled tasks). It is just a example. You should use `crontab -e` to creat a task to run net_test.

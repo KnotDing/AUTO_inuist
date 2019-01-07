@@ -44,10 +44,10 @@ if first_use:
     n.close()
     os.remove(old)
     os.rename(new, old)
-    crontab = os.getcwd()+'/contab'
+    crontab = os.getcwd()+'/crontab'
     if not os.path.exists(crontab):
         f = open(crontab,'w')
         f.write('7-23/10 * * * * sh '+os.getcwd()+'/net_test.sh')
         f.close()
         os.system("crontab ./crontab")
-        os.system("service crond restart")
+        os.system("service cron restart")
