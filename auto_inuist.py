@@ -31,14 +31,23 @@ with request.urlopen(req, data=login_data.encode('utf-8')) as f:
     print('Status:', f.status, f.reason)
 if first_use:
     shutil.copy2(os.getcwd()+'/auto_inuist.py',os.getcwd()+'/auto_inuist_tmp.py')
-    f = open(os.getcwd()+'/auto_inuist.py', mode='r')
-    w = open(os.getcwd()+'/auto_inuist_tmp.py', mode='w')
-    for line in f:
-        w.write(line.replace('username = input("Enter your username: 学号或手机号\\n")', 'username = \''+username+'\''), \
+    old = os.getcwd()+'/auto_inuist.py'
+    new = os.getcwd()+'/auto_inuist_tmp.py'
+    o = open(old, mode='r')
+    n = open(new, mode='w')
+    for line in o:
+        n.write(line.replace('username = input("Enter your username: 学号或手机号\\n")', 'username = \''+username+'\''), \
         line.replace('domain = input("Enter your domain: 选填ChinaNet\\\\Unicom\\\\CMCC\\\\NUIST\\n")', 'domain = \''+domain+'\''), \
         line.replace('password = base64.b64encode(str.encode(input("Enter your password: \\n")))', 'password = \''+password.decode()+'\''), \
         line.replace('first_use = 1', 'first_use = 0'))
-    f.close()
-    w.close()
-os.remove(os.getcwd()+'/auto_inuist.py')
-os.rename(os.getcwd()+'/auto_inuist_tmp.py', os.getcwd()+'/auto_inuist.py')
+    o.close()
+    n.close()
+    os.remove(old)
+    os.rename(new, old)
+    contab = os.getcwd()+'/contab'
+    if not os.path.exists(contab):
+        f = open(contab,'w')
+        f.write('7-23//10 * * * * sh //etc//net_test.sh')
+        f.close()
+        os.system("contab .//contab")
+        os.system("service crond restart")
