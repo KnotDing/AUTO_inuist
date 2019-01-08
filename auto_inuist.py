@@ -57,9 +57,9 @@ if ping != '0\n':
             if input('Do you need to use scheduled tasks for automatic login?(Y/N)') == "Y":
                 crontab = os.getcwd()+'/crontab'
                 if not os.path.exists(crontab):
-                    f = open(crontab,'w')
-                    f.write('7-23/10 * * * * python3 '+old+'\n')
-                    f.close()
+                    c = open(crontab,'w')
+                    c.write('7-23/10 * * * * python3 '+old+'\n')
+                    c.close()
                     os.system('crontab ./crontab')
                     if platform.system() == 'Linux':
                         os.system('service cron restart')
