@@ -8,16 +8,19 @@ import re
 import os
 import shutil
 import platform
-
-net = os.popen('ping -c 3 114.114.114.114 | grep \'64 bytes\' | wc -l') 
-if net.read()== '0\n':
+if platform.system() == 'Windows':
+    net = os.popen('ping 114.114.114.114 | find /i "0%" /c')
+else:
+    net = os.popen('ping -c 3 114.114.114.114 | grep \'64 bytes\' | wc -l') 
+ping = net.read()
+if ping == '0\n':
     url = 'http://10.255.255.13/index.php/index/login'
     user_agent = 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36'
     referer = 'http://10.255.255.13'
     origin = 'http://10.255.255.13'
     first_use = 1
     username = input('Enter your username(Student number or mobile number):\n')
-    domain = input('Enter your domain(ChinaNet\\Unicom\\CMCC\\NUIST):\n')
+    domain = input('Enter your domain(ChinaNet/Unicom/CMCC/NUIST):\n')
     password = base64.b64encode(str.encode(input('Enter your password:\n')))
     enablemacauth = '0'
     login_data = parse.urlencode([
@@ -40,7 +43,7 @@ if net.read()== '0\n':
         n = open(new, mode='w')
         for line in o:
             n.write(line.replace('username = input(\'Enter your username(Student number or mobile number):\\n\')', 'username = \''+username+'\'')\
-            .replace('domain = input(\'Enter your domain(ChinaNet\\\\Unicom\\\\CMCC\\\\NUIST):\\n\')', 'domain = \''+domain+'\'')\
+            .replace('domain = input(\'Enter your domain(ChinaNet/Unicom/CMCC/NUIST):\\n\')', 'domain = \''+domain+'\'')\
             .replace('password = base64.b64encode(str.encode(input(\'Enter your password:\\n\')))', 'password = \''+password.decode()+'\'')\
             .replace('first_use = 1', 'first_use = 0'))
         o.close()
@@ -50,6 +53,7 @@ if net.read()== '0\n':
         if platform.system() == 'Windows':
             print('Please use the scheduled task to set up automatic login. You need to add net_test.sh to the scheduled task.')
         else:
+            if input('Do you need to use scheduled tasks for automatic login?(Y/N)')
             crontab = os.getcwd()+'/crontab'
             if not os.path.exists(crontab):
                 f = open(crontab,'w')
