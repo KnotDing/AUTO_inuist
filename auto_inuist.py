@@ -8,12 +8,13 @@ import re
 import os
 import shutil
 import platform
+
 if platform.system() == 'Windows':
-    net = os.popen('ping 114.114.114.114 | find /i "0%" /c')
+    net = os.popen('ping 114.114.114.114 | find /i "100" /c')
 else:
-    net = os.popen('ping -c 3 114.114.114.114 | grep \'64 bytes\' | wc -l') 
+    net = os.popen('ping -c 3 114.114.114.114 | grep "100" | wc -l')  
 ping = net.read()
-if ping == '0\n':
+if ping != '0\n':
     url = 'http://10.255.255.13/index.php/index/login'
     user_agent = 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36'
     referer = 'http://10.255.255.13'
@@ -51,7 +52,7 @@ if ping == '0\n':
         os.remove(old)
         os.rename(new, old)
         if platform.system() == 'Windows':
-            print('Please use the scheduled task to set up automatic login. You need to add net_test.sh to the scheduled task.')
+            print('Please use the scheduled task to set up automatic login. You need to add auto_nuist.py to the scheduled task.')
         else:
             if input('Do you need to use scheduled tasks for automatic login?(Y/N)') == "Y":
                 crontab = os.getcwd()+'/crontab'
@@ -60,4 +61,7 @@ if ping == '0\n':
                     f.write('7-23/10 * * * * python3 '+old+'\n')
                     f.close()
                     os.system('crontab ./crontab')
-                    os.system('service cron restart')
+                    if platform.system() == 'Linux':   
+                        os.system('service cron restart')
+                    else:
+                        os.system('sudo /usr/sbin/cron restart')
