@@ -13,9 +13,7 @@ When you use it for the first time, you need to enter your account number, passw
 
 **net_test.sh**
 
-~~Net_test.sh is a sh script which is used for testing network. If there are not a available connection, it will run auto_inuist.py.~~
-
-~~If you use it on Windows, you may need to use python /etc/auto_inuist.py instead of python3 /etc/auto_inuist.py (You must have installed Python3!).~~
+~~Net_test.sh is a sh script which is used for testing network. If there are not a available connection, it will run auto_inuist.py. If you use it on Windows, you may need to use python /etc/auto_inuist.py instead of python3 /etc/auto_inuist.py (You must have installed Python3!).~~
 
 `Net_test.sh` has been combined in `auto_nuist.py`.
 

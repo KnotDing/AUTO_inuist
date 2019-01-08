@@ -61,7 +61,9 @@ if ping != '0\n':
                     f.write('7-23/10 * * * * python3 '+old+'\n')
                     f.close()
                     os.system('crontab ./crontab')
-                    if platform.system() == 'Linux':   
+                    if platform.system() == 'Linux':
                         os.system('service cron restart')
                     else:
                         os.system('sudo /usr/sbin/cron restart')
+                        print('If you fail to create a scheduled task, run \'crontab -e\' and enter \'7-23/10 * * * * python3 '+old\
+                        +'\', then run \'sudo /usr/sbin/cron restart\' to enabling it!')
