@@ -44,7 +44,7 @@ def scheduled_task():
         crontab = os.getcwd()+'/crontab'
         if not os.path.exists(crontab):
             c = open(crontab,'w')
-            c.write('7-23/10 * * * * python3 '+old+'\n')
+            c.write('7-23/10 * * * * python3 '+os.getcwd()+'/auto_inuist.py'+'\n')
             c.close()
             os.system('crontab ./crontab')
             if platform.system() == 'Linux':
