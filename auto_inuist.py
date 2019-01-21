@@ -79,7 +79,7 @@ if pingtest('114.114.114.114') != pingtest_local:
         scheduled_task_need = 1
         use_time = 1
         username,domain,password = connect_network()
-        if use_time
+        if use_time:
             change_config(username,domain,password,1)
         print('Login is complete! Retest network connections...')
         if pingtest('114.114.114.114') != pingtest_local:
