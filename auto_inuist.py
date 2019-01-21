@@ -61,7 +61,7 @@ def change_config(username,domain,password,scheduled_task_need):
     for line in o:
         n.write(line.replace('username = input(\'Enter your username(Student number or mobile number):\\n\')', 'username = \''+username+'\'')\
         .replace('domain = input(\'Enter your domain(ChinaNet/Unicom/CMCC/NUIST):\\n\')', 'domain = \''+domain+'\'')\
-        .replace('password = base64.b64encode(str.encode(getpass.getpass(\'Enter your password:\\n\')))', 'password = \''+password.decode()+'\'')\
+        .replace('password = base64.b64encode(str.encode(getpass.getpass(\'Enter your password:\\n\')))', 'password = '+str(password))\
         .replace('scheduled_task_need = 1','scheduled_task_need = '+str(scheduled_task_need))\
         .replace('use_time = 1','use_time = 0'))
     o.close()
