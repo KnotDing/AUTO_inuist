@@ -53,7 +53,7 @@ def scheduled_task(py_dir):
                 os.system('service cron restart')
             else:
                 os.system('sudo /usr/sbin/cron restart')
-                print('If you fail to create a scheduled task, run \'crontab -e\' and enter \'7-23/10 * * * * python3 '+os.getcwd()+'\\auto_nuist.py\', then run \'sudo /usr/sbin/cron restart\' to enabling it!')
+                print('If you fail to create a scheduled task, run \'crontab -e\' and enter \'7-23/10 * * * * python3 '+os.getcwd()+'/'+py_dir+'.py\', then run \'sudo /usr/sbin/cron restart\' to enabling it!')
 def change_config(username,domain,password,scheduled_task_need,py_dir):
     old = os.getcwd()+'/auto_inuist.py'
     new = os.getcwd()+'/'+py_dir+'.py'
