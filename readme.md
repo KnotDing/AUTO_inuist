@@ -8,7 +8,9 @@ You can use it on your linux, windows, openwrt or other unix.
 ## auto_inuist.py
 
 Auto_inuist.py is a python3 script which is under the disguise of browser for authentication.
-When you use it for the first time, you need to enter your account number, password and operator information; then you don't need to enter it again.
+You need to enter your account number, password and operator information for first use.
+You can use `python3 auto_inuist.py 'name'` to creat a file with confirmation, and use `python3 auto_inuist_easy.py 'name'` to creat a file without confirmation. The new file will be named as 'name'. If you don't enter 'name', the current time will be used to create the file.
+In the future, you can use `python3 'name'.py` or `python3 'time'.py`for authentication without entering the account number, password and operator information.
 
 ---------
 

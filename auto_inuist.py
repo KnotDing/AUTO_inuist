@@ -64,8 +64,7 @@ def change_config(username,domain,password,scheduled_task_need,py_dir):
         n.write(line.replace('username = input(\'Enter your username(Student number or mobile number):\\n\')', 'username = \''+username+'\'')\
         .replace('domain = input(\'Enter your domain(ChinaNet/Unicom/CMCC/NUIST):\\n\')', 'domain = \''+domain+'\'')\
         .replace('password = base64.b64encode(str.encode(getpass.getpass(\'Enter your password:\\n\')))', 'password = '+str(password))\
-        .replace('scheduled_task_need = 1','scheduled_task_need = '+str(scheduled_task_need))\
-        .replace('use_time = 1','use_time = 0'))
+        .replace('scheduled_task_need = 1','scheduled_task_need = '+str(scheduled_task_need)))
     o.close()
     n.close()
 sys.argv[0]
@@ -82,10 +81,8 @@ if pingtest('114.114.114.114') != pingtest_local:
     else:
         print('Authentication server is available, login...')
         scheduled_task_need = 1
-        use_time = 1
         username,domain,password = connect_network()
-        if use_time:
-            change_config(username,domain,password,scheduled_task_need,py_dir)
+        change_config(username,domain,password,scheduled_task_need,py_dir)
         print('Login is complete! Retest network connections...')
         if pingtest('114.114.114.114') != pingtest_local:
             print('No network connection, please check the account status!')
