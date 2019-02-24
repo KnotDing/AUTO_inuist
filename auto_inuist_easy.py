@@ -6,7 +6,6 @@ import base64
 import re
 import os
 import shutil
-import platform
 import getpass
 import sys
 import time
