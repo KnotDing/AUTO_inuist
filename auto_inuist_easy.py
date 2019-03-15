@@ -37,9 +37,9 @@ def connect_network():
 
 
 def change_config(username, domain, password, query):
-    shutil.copy2(os.getcwd()+'/auto_inuist.py', os.getcwd()+'/'+query+'.py')
-    old = os.getcwd()+'/auto_inuist.py'
-    new = os.getcwd()+'/'+query+'.py'
+    shutil.copy2('auto_inuist.py', query+'.py')
+    old = 'auto_inuist.py'
+    new = query+'.py'
     o = open(old, mode='r')
     n = open(new, mode='w')
     for line in o:

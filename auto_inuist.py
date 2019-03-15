@@ -50,7 +50,7 @@ def scheduled_task(py_dir):
     if platform.system() == 'Windows':
         print('Please use the scheduled task to set up automatic login. You need to add auto_nuist.py to the scheduled task.')
     else:
-        crontab = os.getcwd()+'/crontab'
+        crontab = 'crontab'
         if not os.path.exists(crontab):
             c = open(crontab, 'w')
             c.write('7-23/10 * * * * python3 ' +
@@ -66,8 +66,8 @@ def scheduled_task(py_dir):
 
 
 def change_config(username, domain, password, scheduled_task_need, py_dir):
-    old = os.getcwd()+'/auto_inuist.py'
-    new = os.getcwd()+'/'+py_dir+'.py'
+    old = 'auto_inuist.py'
+    new = py_dir+'.py'
     shutil.copy2(old, new)
     o = open(old, mode='r')
     n = open(new, mode='w')
